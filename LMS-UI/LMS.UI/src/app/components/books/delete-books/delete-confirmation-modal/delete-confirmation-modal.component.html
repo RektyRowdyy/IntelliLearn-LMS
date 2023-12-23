@@ -1,0 +1,11 @@
+<div class="modal-header">
+    <h4 class="modal-title">Confirm Deletion</h4>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to delete the book "{{ bookTitle }}"?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="onCancelDelete()">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="onConfirmDelete()">Delete</button>
+  </div>
+  

@@ -1,0 +1,23 @@
+<div class="outer">
+
+    <h1>Delete Your Book</h1>
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" class="search-input"
+            (input)="filterBooks()" />
+    </div>
+
+    <div class="container" *ngIf="books && books.length > 0">
+        <div *ngFor="let book of filteredBooks" class="book">
+            <img [src]="book.coverImageUrl" alt="{{ book.title }} Cover">
+            <h3>{{ book.title }}</h3>
+            <p>{{ book.author }}</p>
+
+            <button class="btn btn-danger"(click)="openConfirmationModal(book)">Delete</button>
+        </div>
+    </div>
+
+
+    <!-- Book List -->
+    <h2 class="text-danger" *ngIf="!books || books.length <= 0">No Books Created!</h2>
+</div>

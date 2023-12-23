@@ -1,0 +1,64 @@
+<div class="outer">
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+                <div class="panel border bg-white">
+                    <div class="panel-heading">
+                        <h3 class="pt-3 font-weight-bold">Register</h3>
+                    </div>
+                    <div class="panel-body p-3">
+                        <form [formGroup]="registerForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form group pt-3">
+                                        <div class="input-field" [ngClass]="{'error': isInvalid('firstName')}">
+                                            <span class="fa fa-user p-2"></span>
+                                            <input type="text" formControlName="firstName" placeholder="First Name">
+                                        </div>
+                                    </div>
+                                    <small *ngIf="isInvalid('firstName')" class="text-danger">First Name format invalid!</small>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form group pt-3">
+                                        <div class="input-field" [ngClass]="{'error': isInvalid('lastName')}">
+                                            <span class="fa fa-user p-2"></span>
+                                            <input type="text" formControlName="lastName" placeholder="Last Name">
+                                        </div>
+                                    </div>
+                                    <small *ngIf="isInvalid('lastName')" class="text-danger">Last Name format invalid!</small>
+                                </div>
+                            </div>
+                            <div class="form-group pt-3">
+                                <div class="input-field" [ngClass]="{'error': isInvalid('email')}">
+                                    <span class="fa fa-user p-2"></span>
+                                    <input type="text" formControlName="email" placeholder="Email">
+                                </div>
+                            </div>
+                            <small *ngIf="isInvalid('email')" class="text-danger">Email format invalid!</small>
+                            <div class="form-group pt-3">
+                                <div class="input-field" [ngClass]="{'error': isPasswordInvalid('password')}">
+                                    <span class="fa fa-lock p-2"></span>
+                                    <input [type]="type" formControlName="password" placeholder="Password">
+                                    <span (click)="hideShowPass()" class="fa {{eyeIcon}}"></span>
+                                </div>
+                            </div>
+                            <small *ngIf="isPasswordInvalid('password')" class="text-danger">Password format invalid!</small>
+                            <div class="form-group pt-3">
+                                <div class="input-field" [ngClass]="{'error': !arePasswordsMatching()}">
+                                    <span class="fa fa-lock p-2"></span>
+                                    <input [type]="type" formControlName="rePassword" placeholder="Re-type Password">
+                                    <span (click)="hideShowPass()" class="fa {{eyeIcon}}"></span>
+                                </div>
+                            </div>
+                            <small *ngIf="!arePasswordsMatching()" class="text-danger">Does not match password!</small>
+                            <button [disabled]="registerForm.invalid || isPasswordInvalid('password') || !arePasswordsMatching()" type="submit" (click)="register()" class="btn btn-primary btn-block mt-4 w-100">Sign Up</button>
+                            <div class="text-center pt-4 text-muted">
+                                Already have an account? <a id="forget" routerLink="/login">Sign In</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

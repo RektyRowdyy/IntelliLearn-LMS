@@ -1,0 +1,19 @@
+<div class="outer">
+  <!-- Search Bar -->
+  <div class="search-container">
+    <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" class="search-input" (input)="filterBooks()" />
+  </div>
+
+  <div class="container" *ngIf="books && books.length > 0">
+    <div *ngFor="let book of filteredBooks" class="book" data-bs-toggle="modal" data-bs-target="#bookDetailsModal"
+      (click)="openDetailsModal(book)">
+      <img [src]="book.coverImageUrl" alt="{{ book.title }} Cover">
+      <h3>{{ book.title }}</h3>
+      <p>{{ book.author }}</p>
+    </div>
+  </div>
+
+
+  <!-- Book List -->
+  <p *ngIf="!books || books.length <= 0">No Books Found</p>
+</div>

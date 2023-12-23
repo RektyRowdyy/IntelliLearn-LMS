@@ -1,0 +1,26 @@
+.container {
+  margin: auto;
+}
+
+.outer {
+  margin-top: 50px;
+}
+
+h1 {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.error {
+  color: red;
+}
+
+#kid-reading-book {
+  margin-top: 15vh;
+  height: 50vh;
+  width: auto;
+  padding-right: 60px;
+}

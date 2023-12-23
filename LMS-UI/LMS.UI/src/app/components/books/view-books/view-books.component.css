@@ -1,0 +1,49 @@
+
+.outer {
+  padding: 20px; 
+}
+
+.search-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px; 
+}
+
+.search-input {
+  padding: 10px;
+  border: 1px solid #392467;
+  border-radius: 10px;
+  margin-left: 10px; 
+  width: 300px; 
+}
+
+
+.container {
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .book {
+    margin-top: 20px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .book img {
+    width: 80%;
+    height: 80%;
+    border-radius: 8px;
+  }
+  
+  .book h3 {
+    margin-top: 10px;
+    font-size: 1.2em;
+  }
+  
+  .book p {
+    color: black;
+  }
+  

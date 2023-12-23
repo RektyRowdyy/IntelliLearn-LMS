@@ -1,0 +1,17 @@
+<div class="main-container">
+    <div class="chart-container">
+        <canvas id="donutChart"></canvas>
+        <h2>Total Books in Library: {{totalBooksInLib}}</h2>
+    </div>
+
+    <div class="books-container">
+        <h1>New Releases</h1>
+        <div *ngIf="books && books.length > 0" class="book-list">
+            <div *ngFor="let book of books" class="book">
+                <img [src]="book.coverImageUrl" alt="{{ book.title }} Cover">
+                <h3>{{ book.title }}</h3>
+                <p>{{ book.author }}</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="container mt-3">
+  <div class="row outer">
+    <div class="col-md-6">
+      <img id="kid-reading-book" src="../../../../assets/images/kid-reading-book.png" />
+    </div>
+    <div class="col-md-6">
+      <h1>Create A Book</h1>
+      <form [formGroup]="bookForm">
+        <div class="form-group">
+          <label for="title">Book Title<span class="error">*</span>:</label>
+          <input type="text" id="title" class="form-control" formControlName="title"
+            [ngClass]="{ error: isInvalid('title') }" />
+          <small *ngIf="isInvalid('title')" class="text-danger">Title is required!</small>
+        </div>
+
+        <div class="form-group">
+          <label for="author">Author<span class="error">*</span>:</label>
+          <input type="text" id="author" class="form-control" formControlName="author"
+            [ngClass]="{ error: isInvalid('author') }" />
+          <small *ngIf="isInvalid('author')" class="text-danger">Author is required!</small>
+        </div>
+
+        <div class="form-group">
+          <label for="category">Category<span class="error">*</span>:</label>
+          <input type="text" id="category" class="form-control" formControlName="category"
+            [ngClass]="{ error: isInvalid('author') }" />
+          <small *ngIf="isInvalid('category')" class="text-danger">Category is required!</small>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description<span class="error">*</span>:</label>
+          <textarea id="description" class="form-control" formControlName="description"
+            [ngClass]="{ error: isInvalid('description') }"></textarea>
+          <small *ngIf="isInvalid('description')" class="text-danger">Description is required!</small>
+        </div>
+
+        <div class="form-group">
+          <label for="coverImage">Cover Image URL<span class="error">*</span>:</label>
+          <div class="input-group">
+            <input type="text" id="coverImage" class="form-control" formControlName="coverImageUrl"
+              [ngClass]="{ error: isInvalid('coverImageUrl') }"/>
+            <span class="input-group-text" *ngIf="bookForm.get('coverImageUrl')?.value">
+              <i class="fa fa-eye" (click)="openImagePreviewModal()"></i>
+            </span>
+          </div>
+          <small *ngIf="isInvalid('coverImageUrl')" class="text-danger">A Valid Cover Image Url is required!</small>
+          <!-- <small *ngIf="!isImageUrlValid() && !isInvalid('coverImageUrl')" class="text-danger">Kindly upload Image Url in Jpg / Png format!</small> -->
+        </div>
+        
+        <button [disabled]="bookForm.invalid" (click)="createBook()" type="submit" class="btn btn-primary">
+          Create Book
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
