@@ -11,7 +11,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 40%; /* Adjust the width as needed */
+    width: 40%; 
     position: relative;
 }
 
@@ -32,11 +32,11 @@ h2 {
   }
   
   canvas {
-    width: 100%; /* Make the canvas fill the container */
+    width: 100%; 
   }
 
 .books-container {
-    width: 55%; /* Adjust the width as needed */
+    width: 55%; 
 }
 
 .book-list {

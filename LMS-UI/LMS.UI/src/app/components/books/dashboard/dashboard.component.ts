@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
   
   ngOnInit(): void {
 
+    //API call to get Books based on Category
     this.bookService.getBooksByCategory()
     .pipe(
       map((res: any[]) => {
@@ -41,7 +42,7 @@ export class DashboardComponent implements OnInit {
     });
     
     
-
+    //API call to get Latest Books
     this.bookService.getLatestBooks()
     .subscribe({
       next: (res) => {
@@ -50,6 +51,7 @@ export class DashboardComponent implements OnInit {
     });
   }
   
+  //DonutChart
   RenderChart(labels: any,data: any) {
       new Chart("donutChart", {
       type: 'doughnut',
