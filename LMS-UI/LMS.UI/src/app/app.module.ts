@@ -17,6 +17,7 @@ import { DeleteBooksComponent } from './components/books/delete-books/delete-boo
 import { CreateBooksComponent } from './components/books/create-books/create-books.component';
 import { DeleteConfirmationModalComponent } from './components/books/delete-books/delete-confirmation-modal/delete-confirmation-modal.component';
 import { ViewImageModalComponent } from './components/books/create-books/view-image-modal/view-image-modal.component';
+import { NgxUiLoaderModule, NgxUiLoaderRouterModule, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,10 @@ import { ViewImageModalComponent } from './components/books/create-books/view-im
         allowedDomains: ['localhost:7097'],
       },
     }),
-    NgbModule
+    NgbModule,
+    NgxUiLoaderModule,
+    NgxUiLoaderRouterModule,
+    NgxUiLoaderHttpModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

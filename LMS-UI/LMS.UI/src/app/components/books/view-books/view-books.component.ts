@@ -23,8 +23,6 @@ export class ViewBooksComponent implements OnInit {
     .subscribe({
       next: (res) => {
         this.books = res;
-        console.log(this.books);
-        
         this.filteredBooks = [...this.books];
       }
     });    

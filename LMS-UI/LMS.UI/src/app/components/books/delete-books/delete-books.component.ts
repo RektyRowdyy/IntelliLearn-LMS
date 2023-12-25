@@ -21,9 +21,7 @@ export class DeleteBooksComponent implements OnInit {
     this.bookService.getBooksByUser(this.userService.getTokenUserInfo()?.Id)
     .subscribe({
       next: (res) => {
-        this.books = res;
-        console.log(this.books);
-        
+        this.books = res;  
         this.filteredBooks = [...this.books];
       }
     });
@@ -33,7 +31,6 @@ export class DeleteBooksComponent implements OnInit {
   openConfirmationModal(book: Book): void {
     const modalRef = this.modalService.open(DeleteConfirmationModalComponent);
     modalRef.componentInstance.bookTitle = book.title;
-    console.log(book);
     
     //Getting back Confirmation from the Modal
     modalRef.componentInstance.confirmDelete.subscribe((confirmation: boolean) => {
@@ -50,7 +47,6 @@ export class DeleteBooksComponent implements OnInit {
     this.bookService.deleteBook(id)
     .subscribe({
       next: (res) => {
-        console.log(res);
         alert(res);
       }
     });
@@ -61,8 +57,6 @@ export class DeleteBooksComponent implements OnInit {
     this.filteredBooks = this.books.filter((book) =>
       this.searchMatches(book, this.searchTerm)
     );
-    console.log(this.filteredBooks);
-    
   }
 
   // Helper function to check if a book matches the search term
