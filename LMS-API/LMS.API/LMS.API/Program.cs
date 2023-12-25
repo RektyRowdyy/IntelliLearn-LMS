@@ -31,7 +31,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 
 //Dependency Injection
 builder.Services.AddDbContext<LMSDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("LMSConnectionString")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ProdConnectionString")));
 
 var app = builder.Build();
 
