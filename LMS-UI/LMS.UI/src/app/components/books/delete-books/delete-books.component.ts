@@ -29,12 +29,13 @@ export class DeleteBooksComponent implements OnInit {
     });
   }
 
+  //Delete Confirmation Modal
   openConfirmationModal(book: Book): void {
     const modalRef = this.modalService.open(DeleteConfirmationModalComponent);
     modalRef.componentInstance.bookTitle = book.title;
     console.log(book);
     
-
+    //Getting back Confirmation from the Modal
     modalRef.componentInstance.confirmDelete.subscribe((confirmation: boolean) => {
       if (confirmation) {
         this.deleteBook(book.id);
@@ -44,6 +45,7 @@ export class DeleteBooksComponent implements OnInit {
     });
   }
 
+  //OnSubmit
   deleteBook(id: number): void {
     this.bookService.deleteBook(id)
     .subscribe({

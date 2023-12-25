@@ -19,32 +19,34 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder, private userService: UsersService, private router: Router) { }
 
   ngOnInit(): void {
+    //Validations for Form
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required] 
     })
   }
 
-  //Password Visibilty
+  //Password Visibilty [Eye Icon]
   hideShowPass() {
     this.isText = !this.isText;
     this.isText? this.eyeIcon = "fa-eye" : this.eyeIcon = "fa-eye-slash";
     this.isText ? this.type = "text" : this.type = "password";
   }
 
-  //check for Email and Pass
+  //Validation Check for Email and Pass
   isInvalid(controlName: string): boolean {
     const control = this.loginForm.get(controlName);
     return !!control && control.invalid && (control.dirty || control.touched);
   }
 
+  //onSubmit 
   login() {
-
-    //Dynamic Object
+    
     let loginInfo = {
       Email: this.loginForm.get('email')?.value,
       Password: this.loginForm.get('password')?.value
     }
+
     this.userService.AuthenticateUser(loginInfo.Email,loginInfo.Password)
     .subscribe({
       next: (response: any) => {
@@ -60,7 +62,5 @@ export class LoginComponent implements OnInit {
         alert(err);
       },
     });
-    
   }
-
 }

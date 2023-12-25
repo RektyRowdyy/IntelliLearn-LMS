@@ -19,6 +19,8 @@ export class CreateBooksComponent implements OnInit {
   constructor(private fb: FormBuilder, private userService: UsersService, private bookService: BooksService, private router: Router, private modalService: NgbModal) { }
 
   ngOnInit(): void {
+
+    //Form Validation
     this.bookForm = this.fb.group({
       title: ['', Validators.required],
       author: ['', Validators.required],
@@ -28,27 +30,15 @@ export class CreateBooksComponent implements OnInit {
     })
   }
 
+  //Validation Check for Fields
   isInvalid(controlName: string): boolean {
     const control = this.bookForm.get(controlName);
     return !!control && control.invalid && (control.dirty || control.touched);
   }
 
-  // isImageUrlValid(){
-  //   const imageUrl = this.bookForm.get('coverImageUrl')?.value;
-  //   console.log(imageUrl);
-    
-  //   if (imageUrl) {
-  //     const imageUrlRegex = /\.(png|jpg)$/i;
-  //     console.log(imageUrlRegex.test(imageUrl));
-      
-  //     return imageUrlRegex.test(imageUrl);
-  //   }
-  //   return false;
-  // }
-
+  //onSubmit
   createBook() {
 
-    //Dynamic Object
     let bookInfo = {
       title: this.bookForm.get('title')?.value,
       author: this.bookForm.get('author')?.value,
@@ -57,7 +47,6 @@ export class CreateBooksComponent implements OnInit {
       coverImageUrl: this.bookForm.get('coverImageUrl')?.value,
       createdBy: this.userService.getTokenUserInfo()?.Id
     }
-    console.log(bookInfo);
 
     this.bookService.createBook(bookInfo)
     .subscribe({
@@ -70,6 +59,7 @@ export class CreateBooksComponent implements OnInit {
     });
   }
 
+  //Modal to Preview the Book Cover Image
   openImagePreviewModal() {
     const imageUrl = this.bookForm.get('coverImageUrl')?.value;
     if (imageUrl) {
@@ -83,6 +73,7 @@ export class CreateBooksComponent implements OnInit {
 
 }
 
+//Custom Validator for to check for valid Image Url
 export function imageUrlValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const imageUrl = control.value;
@@ -92,7 +83,7 @@ export function imageUrlValidator(): ValidatorFn {
 
       // Set an event handler for the 'error' event
       img.onerror = () => {
-        // If an error occurs (404 or other), treat it as if alt text is displayed
+        // If an error occurs (404 or other), treating it as if alt text is displayed
         control.setErrors({ invalidImageUrl: true });
       };
 

@@ -15,6 +15,17 @@
     position: relative;
 }
 
+.noBooks {
+    text-align: center;
+    color: white;
+  }
+  
+  .noBooks img {
+    margin-top: 25vh;
+    margin-left: 20px;
+    max-width: 300px;
+  }
+
 h2 {
     color: white;
     margin-top: 20px;

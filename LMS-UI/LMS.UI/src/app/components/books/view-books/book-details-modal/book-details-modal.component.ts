@@ -8,12 +8,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class BookDetailsModalComponent implements OnInit {
 
+  //Input from ViewBooksComponent
   @Input() book: any;
 
   constructor(private modalService: NgbModal) { }
 
-  ngOnInit(): void {
-    console.log('BookDetailsModalComponent - ngOnInit:', this.book);
-  }
+  ngOnInit(): void {}
 
 }

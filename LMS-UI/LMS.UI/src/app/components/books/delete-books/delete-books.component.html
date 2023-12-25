@@ -1,4 +1,4 @@
-<div class="outer">
+<div class="outer" *ngIf="books && books.length > 0">
 
     <h1>Delete Your Book</h1>
     <!-- Search Bar -->
@@ -7,7 +7,7 @@
             (input)="filterBooks()" />
     </div>
 
-    <div class="container" *ngIf="books && books.length > 0">
+    <div class="container">
         <div *ngFor="let book of filteredBooks" class="book">
             <img [src]="book.coverImageUrl" alt="{{ book.title }} Cover">
             <h3>{{ book.title }}</h3>
@@ -16,8 +16,9 @@
             <button class="btn btn-danger"(click)="openConfirmationModal(book)">Delete</button>
         </div>
     </div>
-
-
-    <!-- Book List -->
-    <h2 class="text-danger" *ngIf="!books || books.length <= 0">No Books Created!</h2>
 </div>
+
+ <!-- If No Books in Library -->
+ <div class="noBooks" *ngIf="!books || books.length <= 0">
+    <img src="../../../../assets/images/crying-book.png">
+  </div>

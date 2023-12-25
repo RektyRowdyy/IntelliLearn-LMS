@@ -44,7 +44,6 @@
             </span>
           </div>
           <small *ngIf="isInvalid('coverImageUrl')" class="text-danger">A Valid Cover Image Url is required!</small>
-          <!-- <small *ngIf="!isImageUrlValid() && !isInvalid('coverImageUrl')" class="text-danger">Kindly upload Image Url in Jpg / Png format!</small> -->
         </div>
         
         <button [disabled]="bookForm.invalid" (click)="createBook()" type="submit" class="btn btn-primary">

@@ -18,9 +18,9 @@ namespace LMS.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllBooks()
+        public IActionResult GetAllBooks()
         {
-            var books = await _lmsDbContext.Books
+            var books = _lmsDbContext.Books
                               .Join(
                                     _lmsDbContext.BookCategories,
                                     book => book.CategoryId,
@@ -35,15 +35,15 @@ namespace LMS.API.Controllers
                                         Category = category.Category
                                     })
                                     .OrderByDescending(book => book.Id)
-                                    .ToListAsync();
+                                    .ToList();
             return Ok(books);
         }
 
         [HttpGet]
         [Route("{createdBy:int}")]
-        public async Task<IActionResult> GetBooksByUser([FromRoute] int createdBy)
+        public IActionResult GetBooksByUser([FromRoute] int createdBy)
         {
-            var books = await _lmsDbContext.Books
+            var books = _lmsDbContext.Books
                               .Join(
                                     _lmsDbContext.BookCategories,
                                     book => book.CategoryId,
@@ -58,28 +58,28 @@ namespace LMS.API.Controllers
                                         Category = category.Category,
                                         CreatedBy = book.CreatedBy
                                     }
-                                    ).Where(book => book.CreatedBy == createdBy).ToListAsync();
+                                    ).Where(book => book.CreatedBy == createdBy).ToList();
 
             return Ok(books);
         }
 
         [HttpGet]
         [Route("Latest")]
-        public async Task<IActionResult> GetLatestBooks()
+        public IActionResult GetLatestBooks()
         {
-            var top5Books = await _lmsDbContext.Books
+            var top5Books = _lmsDbContext.Books
                             .OrderByDescending(book => book.Id)
                             .Take(5)
-                            .ToListAsync();
+                            .ToList();
 
             return Ok(top5Books);
         }
 
         [HttpGet]
         [Route("GroupByCategories")]
-        public async Task<IActionResult> BooksByCategory()
+        public IActionResult BooksByCategory()
         {
-            var result = await (
+            var result = (
                         from category in _lmsDbContext.BookCategories
                         join book in _lmsDbContext.Books on category.Id equals book.CategoryId into bookGroup
                         from book in bookGroup.DefaultIfEmpty()
@@ -89,7 +89,7 @@ namespace LMS.API.Controllers
                             Category = grouped.Key,
                             Total = grouped.Count(x => x.book != null)
                         }
-                    ).ToListAsync();
+                    ).ToList();
 
 
 
@@ -97,7 +97,7 @@ namespace LMS.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateBook([FromBody] CreateBook bookRequest)
+        public IActionResult CreateBook([FromBody] CreateBook bookRequest)
         {
             var book = _lmsDbContext.Books.FirstOrDefault(x=> x.Title == bookRequest.Title);
 
@@ -114,8 +114,8 @@ namespace LMS.API.Controllers
                 {
                     Category = bookRequest.Category
                 };
-                await _lmsDbContext.BookCategories.AddAsync(newCategoryValue);
-                await _lmsDbContext.SaveChangesAsync();
+                _lmsDbContext.BookCategories.Add(newCategoryValue);
+                _lmsDbContext.SaveChanges();
             }
 
             var categoryId = _lmsDbContext.BookCategories
@@ -133,8 +133,8 @@ namespace LMS.API.Controllers
                 CreatedBy = bookRequest.CreatedBy
             };
 
-            await _lmsDbContext.Books.AddAsync(newBook);
-            await _lmsDbContext.SaveChangesAsync();
+            _lmsDbContext.Books.Add(newBook);
+            _lmsDbContext.SaveChanges();
 
             return Ok("Book Created Successfully");
 
@@ -142,11 +142,11 @@ namespace LMS.API.Controllers
 
         [HttpDelete]
         [Route("{id:int}")]
-        public async Task<IActionResult> DeleteBook([FromRoute] int id)
+        public IActionResult DeleteBook([FromRoute] int id)
         {
             var bookToRemove = _lmsDbContext.Books.FirstOrDefault(x=> x.Id == id);
             _lmsDbContext.Books.Remove(bookToRemove);
-            await _lmsDbContext.SaveChangesAsync();
+            _lmsDbContext.SaveChanges();
             return Ok("Book deleted successfully");
         }
     }

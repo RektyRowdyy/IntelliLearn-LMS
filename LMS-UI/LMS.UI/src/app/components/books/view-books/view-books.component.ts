@@ -17,6 +17,8 @@ export class ViewBooksComponent implements OnInit {
   constructor(private modalService: NgbModal, private bookService: BooksService) { }
 
   ngOnInit(): void {
+
+    //Api Call to Get All Books
     this.bookService.getAllBooks()
     .subscribe({
       next: (res) => {
@@ -28,10 +30,11 @@ export class ViewBooksComponent implements OnInit {
     });    
   }
 
+  //Modal for Details of Books
   openDetailsModal(book: any): void {
     const modalRef = this.modalService.open(BookDetailsModalComponent, {
-      centered: true, // Center the modal
-      size: 'lg', // You can adjust the size as needed
+      centered: true, 
+      size: 'lg',
     });
     modalRef.componentInstance.book = book;
   }
@@ -41,8 +44,6 @@ export class ViewBooksComponent implements OnInit {
     this.filteredBooks = this.books.filter((book) =>
       this.searchMatches(book, this.searchTerm)
     );
-    console.log(this.filteredBooks);
-    
   }
 
   // Helper function to check if a book matches the search term

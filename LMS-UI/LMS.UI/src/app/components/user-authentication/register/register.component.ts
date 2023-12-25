@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, AbstractControlOptions, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user-model';
 import { UsersService } from 'src/app/services/users.service';
 import { Router } from '@angular/router';
@@ -22,6 +22,8 @@ export class RegisterComponent implements OnInit {
   constructor(private fb: FormBuilder, private userService: UsersService, private router: Router) {}
 
   ngOnInit(): void {
+
+    //Form Validator
     this.registerForm = this.fb.group(
       {
         firstName: ['', Validators.required],
@@ -32,20 +34,20 @@ export class RegisterComponent implements OnInit {
       });
   }
 
-  //Password Visibilty
+  //Password Visibilty [Eye Icon]
   hideShowPass() {
     this.isText = !this.isText;
     this.isText? this.eyeIcon = "fa-eye" : this.eyeIcon = "fa-eye-slash";
     this.isText ? this.type = "text" : this.type = "password";
   }
 
-  //check for fields
+  //Validation check for fields
   isInvalid(controlName: string): boolean {
     const control = this.registerForm.get(controlName);
     return !!control && control.invalid && (control.dirty || control.touched);
   }
 
-  //Password validator
+  //Custom Password Validator
   isPasswordInvalid(controlName: string): boolean {
     const passwordControl = this.registerForm.get(controlName);
   
@@ -62,7 +64,7 @@ export class RegisterComponent implements OnInit {
     return !isLengthValid || !hasCapitalLetter || !hasSpecialCharacter || !hasNumericCharacter;
   }
 
-  //Check if Pass == RePass
+  //Custom Validation for Re-type Password
   arePasswordsMatching(): boolean {
     const passwordControl = this.registerForm.get('password');
     const rePasswordControl = this.registerForm.get('rePassword');
@@ -75,6 +77,7 @@ export class RegisterComponent implements OnInit {
   }
   
   
+  //OnSubmit
   register() {
     let user: User = {
       Id: 0,

@@ -3,6 +3,17 @@
   padding: 20px; 
 }
 
+.noBooks {
+  text-align: center;
+  color: white;
+}
+
+.noBooks img {
+  margin-top: 14vh;
+  margin-left: 20px;
+  max-width: 300px;
+}
+
 .search-container {
   display: flex;
   justify-content: flex-end;

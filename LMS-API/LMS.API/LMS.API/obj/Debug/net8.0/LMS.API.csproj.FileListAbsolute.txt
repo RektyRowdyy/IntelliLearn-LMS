@@ -135,3 +135,4 @@ X:\RektyRowdyy\Self-Learning\LMS-RektyRowdyy\LMS-API\LMS.API\LMS.API\obj\Debug\n
 X:\RektyRowdyy\Self-Learning\LMS-RektyRowdyy\LMS-API\LMS.API\LMS.API\obj\Debug\net8.0\LMS.API.genruntimeconfig.cache
 X:\RektyRowdyy\Self-Learning\LMS-RektyRowdyy\LMS-API\LMS.API\LMS.API\obj\Debug\net8.0\ref\LMS.API.dll
 X:\RektyRowdyy\Self-Learning\LMS-RektyRowdyy\LMS-API\LMS.API\LMS.API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+X:\RektyRowdyy\Self-Learning\LMS-RektyRowdyy\LMS-API\LMS.API\LMS.API\obj\Debug\net8.0\LMS.API.sourcelink.json

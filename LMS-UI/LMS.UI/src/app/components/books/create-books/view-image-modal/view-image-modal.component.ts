@@ -8,6 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ViewImageModalComponent implements OnInit {
 
+  //Input from CreateBookComponent
   @Input() imageUrl: string = '';
   constructor(private modalService: NgbModal) { }
 

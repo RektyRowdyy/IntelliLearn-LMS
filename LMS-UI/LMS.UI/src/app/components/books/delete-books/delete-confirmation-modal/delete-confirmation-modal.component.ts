@@ -8,7 +8,10 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class DeleteConfirmationModalComponent implements OnInit {
 
+  //Input From DeleteBookComponent
   @Input() bookTitle: string = '';
+
+  //Return the Confirmation back to DeleteBookComponent
   @Output() confirmDelete = new EventEmitter<boolean>();
 
   constructor(public activeModal: NgbActiveModal) { }
@@ -27,7 +30,7 @@ export class DeleteConfirmationModalComponent implements OnInit {
   }
 
   private closeModal(): void {
-    this.activeModal.close(); // Close the modal
+    this.activeModal.close();
   }
 
 }

@@ -1,4 +1,4 @@
-<div class="main-container">
+<div class="main-container"  *ngIf="books && books.length > 0" >
     <div class="chart-container">
         <canvas id="donutChart"></canvas>
         <h2>Total Books in Library: {{totalBooksInLib}}</h2>
@@ -6,7 +6,7 @@
 
     <div class="books-container">
         <h1>New Releases</h1>
-        <div *ngIf="books && books.length > 0" class="book-list">
+        <div class="book-list">
             <div *ngFor="let book of books" class="book">
                 <img [src]="book.coverImageUrl" alt="{{ book.title }} Cover">
                 <h3>{{ book.title }}</h3>
@@ -15,3 +15,8 @@
         </div>
     </div>
 </div>
+
+<!-- If No Books in Library -->
+<div class="noBooks" *ngIf="!books || books.length <= 0">
+    <img src="../../../../assets/images/crying-book.png">
+  </div>

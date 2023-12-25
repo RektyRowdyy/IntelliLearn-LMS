@@ -1,4 +1,5 @@
 <div class="outer">
+
   <!-- Search Bar -->
   <div class="search-container">
     <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" class="search-input" (input)="filterBooks()" />
@@ -13,7 +14,9 @@
     </div>
   </div>
 
-
-  <!-- Book List -->
-  <p *ngIf="!books || books.length <= 0">No Books Found</p>
+  <!-- If No Books in Library -->
+  <div class="noBooks" *ngIf="!books || books.length <= 0">
+    <img src="../../../../assets/images/crying-book.png">
+  </div>
+  
 </div>

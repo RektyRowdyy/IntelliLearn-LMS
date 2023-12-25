@@ -16,6 +16,7 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {    
   }
 
+  //Dynamically set the nav-brand routing
   loadIntellilearn():string {
     this.intelliLearn = this.userService.isLoggedIn()? "/dashboard" : "/login";
     return this.intelliLearn;
@@ -24,5 +25,4 @@ export class AppComponent implements OnInit{
   logOut() {
     this.userService.deleteToken();
   }
-
 }
