@@ -92,7 +92,8 @@ export class RegisterComponent implements OnInit {
       next: (user: any) => {
         this.responseMsg = user.toString();
         alert(this.responseMsg);
-        this.router.navigate(['/login']);
+        if(this.responseMsg == "Account Registered Succesfully")
+          this.router.navigate(['/login']);
       },
       error: (err: any) => {
         console.log('Error: ');
